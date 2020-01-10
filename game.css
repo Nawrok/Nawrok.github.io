@@ -1,6 +1,6 @@
 html {
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: auto;
 }
 
 *,
@@ -42,12 +42,11 @@ h1 {
  */
 
 .deck {
-    width: 920px;
-    min-height: 800px;
+    width: 780px;
+    min-height: 660px;
     background: linear-gradient(135deg, #feffc1 0%, gold 100%);
     padding: 32px;
     border-radius: 20px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -56,8 +55,8 @@ h1 {
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    height: 110px;
+    width: 110px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
