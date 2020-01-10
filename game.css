@@ -1,0 +1,340 @@
+html {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+}
+
+body {
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Coda', sans-serif;
+    font-weight: bolder;
+    font-size: 42px;
+    color: rgb(255, 239, 92);
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 920px;
+    min-height: 800px;
+    background: linear-gradient(135deg, #feffc1 0%, gold 100%);
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
+
+.show {
+    width: 90%;
+    cursor: default;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: forestgreen;
+    font-size: 33px;
+    animation-iteration-count: 1;
+    animation: shake-match 0.75s;
+}
+
+.deck .card.notmatch {
+    animation-iteration-count: 3;
+    animation: shake-notmatch 0.33s;
+    background-color: red;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+
+.messi {
+    background: url('images/messi.png');
+}
+
+.modric {
+    background: url('images/modric.png');
+}
+
+.suarez {
+    background: url('images/suarez.png');
+}
+
+.ramos {
+    background: url('images/ramos.png');
+}
+
+.busquets {
+    background: url('images/busquets.png');
+}
+
+.casemiro {
+    background: url('images/casemiro.png');
+}
+
+.godin {
+    background: url('images/godin.png');
+}
+
+.griezmann {
+    background: url('images/griezmann.png');
+}
+
+.kroos {
+    background: url('images/kroos.png');
+}
+
+.oblak {
+    background: url('images/oblak.png');
+}
+
+.terstegen {
+    background: url('images/terstegen.png');
+}
+
+.atm {
+    background: url('images/atm.png');
+}
+
+.fcb {
+    background: url('images/fcb.png');
+}
+
+.rm {
+    background: url('images/rm.png');
+}
+
+.val {
+    background: url('images/val.png');
+}
+
+.tile {
+    height: 90%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@keyframes shake-notmatch {
+    0% {
+        transform: translate(8px) rotate(0deg);
+    }
+
+    20% {
+        transform: translate(-8px) rotate(-1deg);
+    }
+
+    40% {
+        transform: translate(8px) rotate(1deg);
+    }
+
+    60% {
+        transform: translate(-8px) rotate(0deg);
+    }
+
+    80% {
+        transform: translate(8px) rotate(1deg);
+    }
+
+    100% {
+        transform: translate(-8px) rotate(1deg);
+    }
+}
+
+@keyframes shake-match {
+    0% {
+        transform: translate(0, 8px) rotate(0deg);
+    }
+
+    20% {
+        transform: translate(0, -8px) rotate(-1deg);
+    }
+
+    40% {
+        transform: translate(0, 8px) rotate(1deg);
+    }
+
+    60% {
+        transform: translate(0, -8px) rotate(0deg);
+    }
+
+    80% {
+        transform: translate(0, 8px) rotate(1deg);
+    }
+
+    100% {
+        transform: translate(0, -8px) rotate(1deg);
+    }
+}
+
+.fa-spin-hover:hover {
+    animation: fa-spin 2s infinite linear;
+}
+
+.stars {
+    text-decoration: none;
+    transition: color 0.2s linear;
+}
+
+.stars:hover {
+    color: rgb(255, 238, 0);
+}
+
+#button {
+    display: inline-flex;
+    height: 40px;
+    width: 150px;
+    border: 2px solid #BFC0C0;
+    margin: 20px 20px 20px 20px;
+    background-color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: .8em;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+#button a {
+    position: relative;
+    left: 0;
+    transition: all .35s ease-Out;
+}
+
+#dub-arrow {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 239, 92);
+    left: -200px;
+    position: absolute;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .35s ease-Out;
+    bottom: 0;
+}
+
+#button img {
+    width: 20px;
+    height: auto;
+}
+
+#button:hover #dub-arrow {
+    left: 0;
+}
+
+#button:hover a {
+    left: 150px;
+}
+
+.finished {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.timer {
+    margin-left: 40px;
+}
+
+.finished h1 {
+    font-weight: bold;
+}
+
+h2 {
+    font-family: 'Coda', sans-serif;
+    font-size: 26px;
+    margin-bottom: -10px;
+    font-weight: bold;
+}
+
+h3 {
+    font-family: 'Coda', sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Gra pamięciowa</title>
+    <meta name="description" content="">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Gra pamięciowa z piłkarzami i klubami</h1>
+        </header>
+
+        <section class="score-panel">
+            <ul class="stars">
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+            </ul>
+
+            <span class="moves">0</span>. ruch
+
+            <span class="timer">0</span> sek. upłynęło
+
+            <div class="restart">
+                <i class="fa fa-repeat fa-spin-hover"></i>
+            </div>
+        </section>
+        <ul class="deck"></ul>
+    </div>
+    <div class='finished'>
+        <h1>Gratulacje, wygrana!</h1>
+        <h2>Twoje statystyki</h2>
+        <div class='finished-result'></div>
+        <button type="button" id="button" onclick="setupGame()">
+            <div id="dub-arrow">
+                <img src="https://github.com/atloomer/atloomer.github.io/blob/master/img/iconmonstr-arrow-48-240.png?raw=true"
+                    alt="" />
+            </div>
+            <a href="#">Zagraj ponownie!</a>
+        </button>
+    </div>
+    <script src="game.js"></script>
+</body>
+
+</html>
