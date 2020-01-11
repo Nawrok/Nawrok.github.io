@@ -1,4 +1,4 @@
-//set card list here 
+// Ustawianie zestawu kart
 const tileList = ['atm', 'busquets', 'casemiro', 'fcb', 'godin', 'griezmann', 'kroos', 'messi', 'modric', 'oblak', 'ramos', 'rm', 'suarez', 'terstegen', 'val'];
 let duplicateList;
 
@@ -10,24 +10,21 @@ let timer;
 const counterDisplay = document.querySelector('.moves');
 let openCards = [];
 
+// Ustawienie parametrów gry
 setupGame();
-//click to start game
+
+// Kliknięcie stosowane w grze do sprawdzania kart
 document.querySelector('.deck').addEventListener('click', function (event) {
-
 	if (event.target.classList[0] === 'card' && event.target.children.item(0).classList[2] == null) {
-
 		startTimer();
 
-		console.log('POKAZUJE: ' + event.target.children.item(0).classList);
-
 		let cardNode = event.target;
-
 		let childNode = cardNode.children.item(0);
-		let cardName = cardNode.children.item(0).classList[1];
+		let cardName = childNode.classList[1];
 
+		console.log('POKAZUJE: ' + childNode.classList);
 		showCard(childNode);
 
-		//function determine matching
 		if (openCards.length === 0) {
 			openCards.push(cardNode);
 		} else {
@@ -37,16 +34,13 @@ document.querySelector('.deck').addEventListener('click', function (event) {
 
 			if (cardFromListName === cardName) {
 				console.log('Karty zgadzają się!');
-
 				cardNode.classList.add('match');
 				cardFromList.classList.add('match');
-
 				removeCardFromList(cardName);
 			} else {
 				console.log('Karty nie zgadzają się!');
 				cardNode.classList.add('notmatch');
 				cardFromList.classList.add('notmatch');
-
 				unflipCard(cardFromListName, cardName);
 			}
 			incrementCounter();
@@ -60,14 +54,14 @@ document.querySelector('.deck').addEventListener('click', function (event) {
 
 });
 
-//click to restart game
+// Kliknięcie, które resetuje grę
 document.querySelector('.restart').addEventListener('click', function (event) {
 	setupGame();
 });
 
-
+// FUNKCJE
 /*
- * @descriptor start the timer at first click
+ * Rozpoczęcie odliczania czasu po kliknięciu karty
  */
 function startTimer() {
 	function timersec() {
@@ -80,7 +74,7 @@ function startTimer() {
 }
 
 /*
- * @descriptor reset timer and display
+ * Funkcja do wyzerowania timera
  */
 function resetTimer() {
 	clearTimeout(timer);
@@ -88,9 +82,9 @@ function resetTimer() {
 }
 
 /*
- * @descripto create array with duplicates
- * @param {list} originalList
- * @return {list} list containing duplicate element
+ * Tworzenie tablicy duplikatów
+ * względem oryginalnej listy, z tym że każda karta
+ * jest wrzucana tam dwa razy
  */
 function performDuplicate(originalList) {
 	const duplicateList = [];
@@ -102,13 +96,12 @@ function performDuplicate(originalList) {
 	return duplicateList;
 }
 
-
 /* 
- * @descriptor setup the game
- * Display the cards on the page
- *   - shuffle the list of cards using the provided 'shuffle' method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
+ * Ustawienie wszystkich parametrów potrzebnych do startu gry
+ * Wyświetlenie kart na ekranie
+ *   - pomieszanie kart za pomocą specjalnej funkcji mieszającej
+ *   - stworzenie HTML dla każdej karty
+ *   - i dodanie HTML każdej karty do strony
  */
 function setupGame() {
 	counter = 0;
@@ -128,15 +121,15 @@ function setupGame() {
 	deck.innerHTML = '';
 	openCards = [];
 	listRandom.forEach(function (item) {
-		deck.innerHTML += `<li class='card'>
-                <i class='tile ${item}'></i>
-           		</li>`;
+		deck.innerHTML += 	`<li class='card'>
+								<i class='tile ${item}'></i>
+							</li>`;
 	});
 }
 
 /*
- * @descriptor display a new game
- * @param {boolean} display new game else result
+ * Tworzenie wyświetlania w zależności czy gra się skończyła
+ * Poruszanie się pomiędzy ekranem gry, a ekranem jej ukończenia
  */
 function displayNewGame(boolean) {
 	if (boolean) {
@@ -148,19 +141,15 @@ function displayNewGame(boolean) {
 	}
 }
 
-
 /*
- * @descriptor flip and animate the card on the screen
- * @param {event target} card
+ * Odwrócenie i animowanie wskazanej karty
  */
 function showCard(card) {
 	card.classList.add('show');
 }
 
-
 /*
- * @descriptor Remove card from list
- * @param {string} cardName
+ * Usunięcie karty z listy
  */
 function removeCardFromList(cardName) {
 	duplicateList = duplicateList.filter(function (element) {
@@ -169,9 +158,7 @@ function removeCardFromList(cardName) {
 }
 
 /*
- * @descritor unflip 2 cards when they do not match
- * @param {string} firstCard 
- * @param {string} secondCard
+ * Odwrócenie dwóch kart, jeśli nie są one takie same
  */
 function unflipCard(firstCard, secondCard) {
 	let firstCardNode = document.querySelectorAll('.' + firstCard),
@@ -197,9 +184,11 @@ function unflipCard(firstCard, secondCard) {
 	clickSwitch(false);
 }
 
+/*
+ * Zablokowanie klikania, gdy karty wykonują animacje w trakcie timeouta (1 s)
+ */
 function clickSwitch(mode) {
 	deck = document.querySelector('.deck');
-
 	if (mode) {
 		deck.style.pointerEvents = "auto";
 	} else {
@@ -208,15 +197,14 @@ function clickSwitch(mode) {
 }
 
 /*
- * @descriptor increment count of click by 1 
+ * Prosty inkrementator liczby ruchów
  */
 function incrementCounter() {
-	counter++;
-	counterDisplay.textContent = counter;
+	counterDisplay.textContent = ++counter;
 }
 
 /*
- * @descriptor reset to 5 stars for new game
+ * Ustawianie gwiazdek na 5 dla nowej gry
  */
 function resetStars() {
 	const stars = document.querySelector('.stars');
@@ -224,7 +212,7 @@ function resetStars() {
 }
 
 /*
- * @descritor determinie and display star rating based on counter 
+ * Zmniejszanie i wyświetlanie gwiazdek zależnie od wyniku
  */
 function calculateStarRating() {
 	const stars = document.querySelector('.stars');
@@ -236,8 +224,7 @@ function calculateStarRating() {
 }
 
 /*
- * @descritor display game results
- * @param {number} counter
+ * Koniec gry, zliczenie statystyk i wyświetlenie ekranu końcowego
  */
 function gameFinished(counter) {
 	console.log('Gra ukończona!');
@@ -276,15 +263,14 @@ function gameFinished(counter) {
 	}
 	afterGameComment.style.fontWeight = "normal";
 	afterGameComment.style.fontSize = "20px";
+	
 	finishedText.append(result);
 	finishedText.append(afterGameComment);
 }
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+// Funkcja mieszająca z http://stackoverflow.com/a/2450976 (algorytm mieszający Fishera-Yatesa)
 function shuffle(array) {
-	let currentIndex = array.length,
-		temporaryValue, randomIndex;
-
+	let currentIndex = array.length, temporaryValue, randomIndex;
 	while (currentIndex !== 0) {
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;
@@ -292,6 +278,5 @@ function shuffle(array) {
 		array[currentIndex] = array[randomIndex];
 		array[randomIndex] = temporaryValue;
 	}
-
 	return array;
 }
