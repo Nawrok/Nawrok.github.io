@@ -2,8 +2,8 @@
 const tileList = ['atm', 'busquets', 'casemiro', 'fcb', 'godin', 'griezmann', 'kroos', 'messi', 'modric', 'oblak', 'ramos', 'rm', 'suarez', 'terstegen', 'val'];
 let duplicateList;
 
-let counter;
-let starsCount;
+let counter = 0;
+let starsCount = 5;
 let secondsElapsed = 0;
 let timer;
 
@@ -28,7 +28,6 @@ document.querySelector('.deck').addEventListener('click', function (event) {
 		if (openCards.length === 0) {
 			openCards.push(cardNode);
 		} else {
-
 			let cardFromList = openCards.pop();
 			let cardFromListName = cardFromList.children.item(0).classList[1];
 
@@ -64,12 +63,12 @@ document.querySelector('.restart').addEventListener('click', function (event) {
  * Rozpoczęcie odliczania czasu po kliknięciu karty
  */
 function startTimer() {
-	function timersec() {
+	function timerSec() {
 		document.querySelector('.timer').innerText = secondsElapsed++;
-		timer = setTimeout(timersec, 1000);
+		timer = setTimeout(timerSec, 1000);
 	}
 	if (secondsElapsed === 0) {
-		timersec();
+		timerSec();
 	}
 }
 
@@ -121,7 +120,7 @@ function setupGame() {
 	deck.innerHTML = '';
 	openCards = [];
 	listRandom.forEach(function (item) {
-		deck.innerHTML += 	`<li class='card'>
+		deck.innerHTML += `<li class='card'>
 								<i class='tile ${item}'></i>
 							</li>`;
 	});
@@ -216,7 +215,7 @@ function resetStars() {
  */
 function calculateStarRating() {
 	const stars = document.querySelector('.stars');
-	if (counter === 19 || counter === 26 || counter === 38 || counter == 73) {
+	if (counter === 19 || counter === 26 || counter === 38 || counter === 73) {
 		stars.removeChild(stars.firstElementChild);
 		stars.insertAdjacentHTML('beforeend', "<li><i class='fa fa-star-o'></i></li>");
 		starsCount--;
@@ -263,14 +262,15 @@ function gameFinished(counter) {
 	}
 	afterGameComment.style.fontWeight = "normal";
 	afterGameComment.style.fontSize = "20px";
-	
+
 	finishedText.append(result);
 	finishedText.append(afterGameComment);
 }
 
 // Funkcja mieszająca z http://stackoverflow.com/a/2450976 (algorytm mieszający Fishera-Yatesa)
 function shuffle(array) {
-	let currentIndex = array.length, temporaryValue, randomIndex;
+	let currentIndex = array.length,
+		temporaryValue, randomIndex;
 	while (currentIndex !== 0) {
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;
